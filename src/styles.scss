@@ -1,0 +1,20 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Trebuchet MS', 'Helvetica Neue', sans-serif;
+  background:
+    radial-gradient(circle at top right, #0f766e 0%, rgba(15, 118, 110, 0) 40%),
+    radial-gradient(circle at bottom left, #7c2d12 0%, rgba(124, 45, 18, 0) 35%),
+    linear-gradient(165deg, #111827 0%, #0f172a 100%);
+  color: #f9fafb;
+}

@@ -1,18 +1,51 @@
-<h1>Current Player: {{ player }} </h1>
+<section class="game">
+  <section class="panel">
+    <h2 class="panel__title">Round Controls</h2>
+    <p class="status">{{ statusMessage }}</p>
 
-<button nbButton outline status="danger" (click)="newGame()">Start new Game</button>
+    <section class="controls">
+      <button type="button" (click)="startNewRound()">New Round</button>
+      <button type="button" (click)="resetScoreboard()">Reset Score</button>
+      <button type="button" (click)="undo()" [disabled]="!canUndo">Undo</button>
+      <button type="button" (click)="redo()" [disabled]="!canRedo">Redo</button>
+    </section>
 
+    <section class="scoreboard" aria-label="Scoreboard">
+      <p>X: {{ scores.X }}</p>
+      <p>O: {{ scores.O }}</p>
+      <p>Draws: {{ scores.draws }}</p>
+    </section>
+  </section>
 
-<h2 *ngIf="winner">
-    Player {{ winner }} won the game!
-</h2>
+  <section class="game-area">
+    <section class="board" role="grid" aria-label="TicTacToe board">
+      <button
+        *ngFor="let value of squares; let i = index"
+        type="button"
+        class="cell"
+        role="gridcell"
+        [class.cell--winning]="isWinningCell(i)"
+        [disabled]="isGameOver || !!value"
+        [attr.aria-label]="getCellLabel(i)"
+        (click)="makeMove(i)"
+      >
+        {{ value || '' }}
+      </button>
+    </section>
 
-
-<main>
-    <app-square 
-        *ngFor="let val of squares; let i = index" 
-        [value]="val"
-        (click)="makeMove(i)"> 
-
-    </app-square>
-</main>
+    <section class="history">
+      <h2>Move History</h2>
+      <ol>
+        <li *ngFor="let snapshot of moveHistory; let i = index; trackBy: trackByMove">
+          <button
+            type="button"
+            [class.history__active]="i === moveIndex"
+            (click)="jumpTo(i)"
+          >
+            {{ i === 0 ? 'Go to start' : 'Go to move #' + i }}
+          </button>
+        </li>
+      </ol>
+    </section>
+  </section>
+</section>

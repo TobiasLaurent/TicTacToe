@@ -1,10 +1,145 @@
-main {
-    display: grid;
-    grid-template-columns: 200px 200px 200px;
-    grid-gap: 0px;
+:host {
+  display: block;
 }
 
-app-square {
-    border: 1px gray solid;
-    height: 200px;
+.game {
+  margin: 0 auto;
+  max-width: 62rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.88), rgba(2, 6, 23, 0.9));
+  box-shadow: 0 24px 56px rgba(2, 6, 23, 0.45);
+}
+
+.panel {
+  display: grid;
+  gap: 0.8rem;
+  margin-bottom: 1.25rem;
+}
+
+.panel__title {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.2rem;
+}
+
+.status {
+  margin: 0;
+  color: #fde68a;
+  font-size: 1rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.controls button,
+.history button {
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  border-radius: 0.65rem;
+  padding: 0.5rem 0.8rem;
+  background: rgba(30, 41, 59, 0.85);
+  color: #f8fafc;
+  cursor: pointer;
+}
+
+.controls button:disabled,
+.history button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.scoreboard p {
+  margin: 0;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.2);
+  color: #e0f2fe;
+}
+
+.game-area {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr minmax(13rem, 15rem);
+}
+
+.board {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, minmax(4.75rem, 7.75rem));
+}
+
+.cell {
+  width: 100%;
+  min-height: 4.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  border-radius: 0.7rem;
+  background: linear-gradient(180deg, rgba(51, 65, 85, 0.75), rgba(15, 23, 42, 0.82));
+  color: #f8fafc;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 130ms ease, border-color 130ms ease, box-shadow 130ms ease;
+}
+
+.cell:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: #fbbf24;
+  box-shadow: 0 8px 16px rgba(251, 191, 36, 0.25);
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.cell--winning {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 1px #22c55e inset;
+}
+
+.history h2 {
+  margin: 0 0 0.5rem;
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+.history ol {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.history__active {
+  border-color: #fbbf24;
+  color: #fde68a;
+}
+
+@media (max-width: 54rem) {
+  .game-area {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 36rem) {
+  .game {
+    padding: 0.9rem;
+  }
+
+  .board {
+    gap: 0.4rem;
+    grid-template-columns: repeat(3, minmax(4rem, 1fr));
+  }
+
+  .cell {
+    min-height: 4rem;
+  }
 }

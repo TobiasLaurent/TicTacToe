@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "codelyzer"
+  ],
+  "rulesDirectory": [
+    "codelyzer"
+  ],
+  "rules": {
+    "component-selector": [
+      true,
+      "element",
+      "app",
+      "kebab-case"
+    ],
+    "directive-selector": [
+      true,
+      "attribute",
+      "app",
+      "camelCase"
+    ],
+    "max-classes-per-file": false,
+    "no-console": false,
+    "ordered-imports": false,
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "trailing-comma": false
+  }
+}
